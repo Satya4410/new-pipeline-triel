@@ -1,6 +1,14 @@
+# Fetching latest version of Java
 FROM openjdk:17
-VOLUME /tmp
+ 
+# Setting up work directory
+WORKDIR /app
+
+# Copy the jar file into our app
+COPY ./target/jendemo.jar /app
+
+# Exposing port 8080
 EXPOSE 8080
-ARG JAR_FILE=target/jendemo.jar
-ADD ${JAR_FILE} jendemo.jar
-ENTRYPOINT ["java","-jar","/jendemo.jar"]
+
+# Starting the application
+CMD ["java", "-jar", "jendemo.jar"]
